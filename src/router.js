@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Hello from '@/Hello.vue'
+import Home from '@/pages/Home.vue'
+import Authentication from '@/pages/Authentication.vue'
+import SearchProviders from '@/pages/SearchProviders.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +30,8 @@ export default new VueRouter({
    */
 
   routes: [
-    { path: '/', component: Hello }
+    { path: '/', component: Home },
+    { path: '/auth', component: Authentication },
+    { path: '/search-providers', component: SearchProviders }
   ]
 })

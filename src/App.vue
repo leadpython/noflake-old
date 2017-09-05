@@ -3,7 +3,6 @@
   <div id="q-app">
     <header></header>
     <main>
-      <img src="~assets/quasar-logo-full.svg" alt="Quasar PWA">
       <router-view></router-view>
     </main>
   </div>
@@ -19,12 +18,16 @@ export default {}
 <style lang="stylus">
 @import '~variables'
 
+#q-app
+  background $primary
+  min-height 100vh
+
 main
   text-align center
-  margin-top 40px
 
 header
   margin 0
   height 10px
   background-color $primary
+
 </style>
