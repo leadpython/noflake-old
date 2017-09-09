@@ -6,7 +6,10 @@
 </template>
 
 <script>
+import { QBtn } from 'quasar'
+
 export default {
+  components: { QBtn },
   data () {
     return {}
   },

@@ -13,18 +13,19 @@ import { QBtn } from 'quasar'
 
 export default {
   name: 'home',
+  components: { QBtn },
+  props: ['auth', 'authenticated'],
   data: function () {
     return {
 
     }
   },
-  components: { QBtn },
   methods: {
     goToSearchProvidersPage: function () {
       this.$router.replace('search-providers')
     },
     goToAuthenticationPage: function () {
-      this.$router.replace('auth')
+      this.auth.login()
     }
   }
 }

@@ -3,23 +3,43 @@
   <div id="q-app">
     <header></header>
     <main>
-      <router-view></router-view>
+      <router-view
+        :auth="auth"
+        :authenticated="authenticated"
+      ></router-view>
     </main>
   </div>
 </template>
 
 <script>
-/*
- * Root component
- */
-export default {}
+import AuthService from './auth/AuthService'
+
+const auth = new AuthService()
+
+const { login, logout, authenticated, authNotifier } = auth
+
+export default {
+  name: 'app',
+  data () {
+    authNotifier.on('authChange', authState => {
+      this.authenticated = authState.authenticated
+    })
+    return {
+      auth,
+      authenticated
+    }
+  },
+  methods: {
+    login,
+    logout
+  }
+}
 </script>
 
 <style lang="stylus">
 @import '~variables'
 
 #q-app
-  background $primary
   min-height 100vh
 
 main

@@ -14,6 +14,7 @@ import Vue from 'vue'
 import Vuelidate from 'vuelidate'
 import Quasar from 'quasar'
 import router from './router'
+import { store } from './store'
 
 Vue.config.productionTip = false
 Vue.use(Quasar) // Install Quasar Framework
@@ -30,6 +31,7 @@ import 'quasar-extras/animate'
 /* eslint-disable no-new */
 new Vue({
   el: '#q-app',
+  store,
   router,
   render: h => h(require('./App'))
 })
