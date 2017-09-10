@@ -2,7 +2,9 @@ import auth0 from 'auth0-js'
 import { AUTH_CONFIG } from './auth0-variables'
 import EventEmitter from 'EventEmitter'
 import router from './../router'
-import {store} from './../store'
+import HTTPService from './../http'
+
+const httpService = new HTTPService()
 
 export default class AuthService {
   authenticated = this.isAuthenticated()
@@ -21,7 +23,7 @@ export default class AuthService {
     redirectUri: AUTH_CONFIG.callbackUrl,
     audience: `https://${AUTH_CONFIG.domain}/userinfo`,
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid profile'
   })
 
   login () {
@@ -47,12 +49,11 @@ export default class AuthService {
     let expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
     )
-    console.log(authResult)
     localStorage.setItem('access_token', authResult.accessToken)
     localStorage.setItem('id_token', authResult.idToken)
     localStorage.setItem('expires_at', expiresAt)
     this.authNotifier.emit('authChange', { authenticated: true })
-    store.commit('setProviderID', authResult.idTokenPayload.sub)
+    httpService.verifyProvider(authResult.idTokenPayload)
   }
 
   logout () {

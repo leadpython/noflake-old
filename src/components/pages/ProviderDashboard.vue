@@ -70,7 +70,7 @@ export default {
       this.auth.logout()
     },
     displayProviderID () {
-      console.log(this.$store.state.providerID)
+      console.log(this.$store.state.accessToken)
     }
   }
 }

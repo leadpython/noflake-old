@@ -1,7 +1,6 @@
 <template>
   <!-- Don't drop "q-app" class -->
   <div id="q-app">
-    <header></header>
     <main>
       <router-view
         :auth="auth"
@@ -41,6 +40,16 @@ export default {
 
 #q-app
   min-height 100vh
+
+.q-toolbar
+  background $primary
+
+aside
+  background rgb(110,130,160) !important
+  color white !important
+
+aside i 
+  color white !important
 
 main
   text-align center
